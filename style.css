@@ -1,0 +1,163 @@
+:root {
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --text-color: #222222;
+  --subtext-color: #555555;
+  --border-color: #e1e4e8;
+  --highlight: #3b82f6;
+  --risk-low: #16a34a;      /* verde */
+  --risk-medium: #f59e0b;   /* amarelo */
+  --risk-high: #dc2626;     /* vermelho */
+  --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+}
+
+header p {
+  color: var(--subtext-color);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+  padding: 0 1rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: var(--highlight);
+  box-shadow: 0 6px 15px rgb(59 130 246 / 0.25);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--highlight);
+  margin-bottom: 0.8rem;
+}
+
+.card p {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-color);
+}
+
+.card ul {
+  margin-left: 1.2rem;
+  margin-bottom: 0.9rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.card ul.pros li::before {
+  content: "✔";
+  color: var(--risk-low);
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+.card ul.contras li::before {
+  content: "✖";
+  color: var(--risk-high);
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+.card li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--subtext-color);
+}
+
+.badge {
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  margin-top: auto;
+  user-select: none;
+}
+
+.risco-baixo {
+  background-color: var(--risk-low);
+  color: white;
+}
+
+.risco-moderado {
+  background-color: var(--risk-medium);
+  color: black;
+}
+
+.risco-alto {
+  background-color: var(--risk-high);
+  color: white;
+}
+
+.card a {
+  margin-top: 1.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--highlight);
+  font-weight: 600;
+  border: 1.5px solid var(--highlight);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  align-self: flex-start;
+}
+
+.card a:hover {
+  background-color: var(--highlight);
+  color: white;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--subtext-color);
+  padding: 2rem 1rem 1rem;
+  border-top: 1px solid var(--border-color);
+  max-width: 1100px;
+  margin: 3rem auto 0 auto;
+}
