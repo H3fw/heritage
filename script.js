@@ -1,6 +1,7 @@
 const servicos = [
   {
     nome: "23andMe",
+    foto: "./assets/23andme.jpg",
     preco: "US$ 129",
     pros: [
       "Resultados de saúde e ancestralidade",
@@ -16,6 +17,7 @@ const servicos = [
   },
   {
     nome: "AncestryDNA",
+    foto: "./assets/ancestrydna.jpg",
     preco: "US$ 99",
     pros: [
       "Foco em genealogia",
@@ -31,6 +33,7 @@ const servicos = [
   },
   {
     nome: "MyHeritage DNA",
+    foto: "./assets/myheritage.jpg",
     preco: "US$ 89",
     pros: [
       "Custo acessível",
@@ -46,6 +49,7 @@ const servicos = [
   },
   {
     nome: "Nebula Genomics",
+    foto: "./assets/nebulagenomics.jpg",
     preco: "US$ 299",
     pros: [
       "Sequenciamento completo do genoma",
@@ -61,6 +65,7 @@ const servicos = [
   },
   {
     nome: "Living DNA",
+    foto: "./assets/livingdna.jpg",
     preco: "US$ 99",
     pros: [
       "Foco em ancestralidade britânica",
@@ -76,6 +81,7 @@ const servicos = [
   },
   {
     nome: "FamilyTreeDNA",
+    foto: "./assets/familytreedna.jpg",
     preco: "US$ 119",
     pros: [
       "Foco em linhagens paterna/materna",
@@ -91,6 +97,7 @@ const servicos = [
   },
   {
     nome: "TellmeGen",
+    foto: "./assets/tellmegen.jpg",
     preco: "US$ 139",
     pros: [
       "Informações médicas detalhadas",
@@ -111,7 +118,7 @@ function gerarCards() {
 
   servicos.forEach(servico => {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "company";
 
     const riscoClasse = {
       baixo: "risco-baixo",
@@ -119,22 +126,41 @@ function gerarCards() {
       alto: "risco-alto"
     }[servico.risco];
 
-    card.innerHTML = `
-      <h2>${servico.nome}</h2>
-      <p><strong>Preço:</strong> ${servico.preco}</p>
-      <p><strong>Prós:</strong></p>
-      <ul class="pros">
-        ${servico.pros.map(p => `<li>${p}</li>`).join("")}
-      </ul>
-      <p><strong>Contras:</strong></p>
-      <ul class="contras">
-        ${servico.contras.map(c => `<li>${c}</li>`).join("")}
-      </ul>
-      <span class="badge ${riscoClasse}">Risco: ${servico.risco}</span><br>
-      <a href="${servico.link}" target="_blank">Acessar site</a>
-    `;
+  card.innerHTML = `
+    <div class="card">
+      <img src="${servico.foto}" alt="Logo de ${servico.nome}">
+      <div class="card-content">
+        <h2>${servico.nome}</h2>
+        <p><strong>Preço:</strong> ${servico.preco}</p>
+        <span class="badge ${riscoClasse}">Risco: ${servico.risco}</span><br>
+        <div class="detalhes hidden">
+          <p><strong>Prós:</strong></p>
+          <ul class="pros">
+            ${servico.pros.map(p => `<li>${p}</li>`).join("")}
+          </ul>
+          <p><strong>Contras:</strong></p>
+          <ul class="contras">
+            ${servico.contras.map(c => `<li>${c}</li>`).join("")}
+          </ul>
+        </div>
+        <a href="${servico.link}" target="_blank">Acessar site</a>
+      </div>
+    </div>
+    <button class="toggle-btn">Ver detalhes</button>
+  `;
+
+
+
 
     container.appendChild(card);
+
+    const toggleBtn = card.querySelector(".toggle-btn");
+    const detalhes = card.querySelector(".detalhes");
+
+    toggleBtn.addEventListener("click", () => {
+      detalhes.classList.toggle("hidden");
+      toggleBtn.textContent = detalhes.classList.contains("hidden") ? "Ver detalhes" : "Ocultar detalhes";
+    });
   });
 }
 
